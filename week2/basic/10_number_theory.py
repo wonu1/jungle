@@ -36,7 +36,14 @@ def gcd(a, b):
     """
     # TODO: 유클리드 호제법 구현
     # base case: b가 0이면 a 반환
-    # recursive를 이용 
+    # recursive를 이용
+
+    if (a % b == 0):
+        return b
+    else:
+        #gcd(a, b) = gcd(b, a%b)
+        return gcd(b, a%b)
+
     pass
 
 def gcd_iterative(a, b):
@@ -51,6 +58,13 @@ def gcd_iterative(a, b):
     """
     # TODO: 반복문으로 구현
     # b가 0이 될 때까지 반복
+    temp = 0
+    while(a % b != 0):
+        temp = b
+        b = a % b
+        a = temp
+
+    return b
     pass
 
 def lcm(a, b):
@@ -64,6 +78,10 @@ def lcm(a, b):
         최소공배수
     """
     # TODO: LCM 계산
+    #- LCM 공식: lcm(a, b) = (a × b) / gcd(a, b)
+
+    return a * b / gcd(a,b)
+
     pass
 
 def extended_gcd(a, b):
@@ -81,8 +99,13 @@ def extended_gcd(a, b):
     # base case: b가 0이면 (a, 1, 0) 반환    
     # recursive case
     # 역추적하며 x, y 계산
-    pass
 
+
+
+    
+
+    pass
+import math
 def is_prime(n):
     """
     소수 판별
@@ -96,7 +119,17 @@ def is_prime(n):
     # TODO: 소수 판별 구현
     # n이 2보다 작으면 False
     # 2부터 sqrt(n)까지 나누어 떨어지는지 확인    
-    # 3부터 sqrt(n)까지 홀수만 확인
+    # 3부터 sqrt(n)까지 홀수만 확인 
+
+    if(n == 2 or n ==3):
+        return True
+
+    for i in range(2,int(math.sqrt(n))):
+        if(n % i == 0):
+            return False
+        else:
+            return True
+
     pass 
 
 # 테스트 케이스
@@ -127,15 +160,15 @@ if __name__ == "__main__":
     print("서로소(coprime): GCD가 1")
     print()
     
-    # 테스트 케이스 4: 확장 유클리드
-    print("=== 테스트 케이스 4: 확장 유클리드 ===")
-    a, b = 35, 15
-    g, x, y = extended_gcd(a, b)
-    print(f"a = {a}, b = {b}")
-    print(f"GCD = {g}")
-    print(f"{a} × {x} + {b} × {y} = {g}")
-    print(f"검증: {a * x + b * y} = {g}")
-    print()
+    # # 테스트 케이스 4: 확장 유클리드
+    # print("=== 테스트 케이스 4: 확장 유클리드 ===")
+    # a, b = 35, 15
+    # g, x, y = extended_gcd(a, b)
+    # print(f"a = {a}, b = {b}")
+    # print(f"GCD = {g}")
+    # print(f"{a} × {x} + {b} × {y} = {g}")
+    # print(f"검증: {a * x + b * y} = {g}")
+    # print()
     
     # 테스트 케이스 5: 소수 판별
     print("=== 테스트 케이스 5: 소수 판별 ===")
