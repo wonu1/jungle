@@ -46,20 +46,33 @@ def combinations(n, k):
         # TODO: base case - k개를 모두 선택했으면 결과에 추가
         pass
         
+        # if k == len(current_combination) and  current_combination not in result and start < n:
+        #     result.append(current_combination)
+        #     current_combination =[]
+        #     return
+        
+        if k == len(current_combination):
+            result.append(current_combination[:])
+            return
+    
         # TODO: start부터 n까지 숫자를 하나씩 시도
         ## TODO: 백트랙킹 3단계 구현
         ## 1. 선택(Choose)
         ## 2. 탐색(Explore)
         ## 3. 취소(Unchoose)
         pass
-    
+        for i in range(start,n+1):
+            current_combination.append(i)
+            backtrack(i+1,current_combination)
+            current_combination.pop()
+        
     backtrack(1, [])
     return result
 
 def combinations_itertools_compare(n, k):
     """
     itertools를 사용한 조합 생성 (비교용)
-    """
+    """ 
     from itertools import combinations as comb
     return [list(c) for c in comb(range(1, n+1), k)]
 
