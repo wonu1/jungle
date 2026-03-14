@@ -7,7 +7,7 @@
 
 입력:
 - matrix: N x N 크기의 2차원 리스트
-
+[]
 출력:
 - 시계방향으로 90도 회전된 2차원 리스트
 
@@ -18,6 +18,17 @@
     [4, 5, 6],
     [7, 8, 9]
 ]
+(0, 0) -> (0, 2)
+(0, 1) -> (1, 2)
+(0, 2) -> (2, 2)
+
+(1, 0) -> (0, 1)
+(1, 1) -> (1, 1)
+(1, 2) -> (2, 1)
+
+for i in range(n):
+    for j in range(m):
+        nums[i,j] = nums[j][n-1-i]
 
 출력:
 [
@@ -45,10 +56,21 @@ def rotate_matrix_90(matrix):
     
     # TODO: n x n 크기의 새로운 배열을 생성하세요 (0으로 초기화)
     pass
-        
+    rotated = []
+
+    for i in range(n):
+        rotated.append([])
+        for j in range(n):
+            rotated[i].append(0)
+
+
     # TODO: 원본 배열의 각 요소를 회전된 위치에 배치하세요
     # 힌트: (i, j) 위치의 요소는 회전 후 (j, n-1-i) 위치로 이동
     pass
+
+    for i in range(n):
+        for j in range(n):
+            rotated[j][n-1-i] = matrix[i][j]
     
     return rotated
 
